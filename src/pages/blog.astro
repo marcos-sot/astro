@@ -3,6 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 import BlogPost from '../components/BlogPost.astro';
 const allPosts = await Astro.glob('../pages/posts/*.md');
 const pageTitle = "Mi Blog de Astro aprendizaje"
+
+import { getPosts } from "./fakePost";
+
+
+const post = await getPosts();
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -10,6 +15,20 @@ const pageTitle = "Mi Blog de Astro aprendizaje"
      <ul>
       {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
     </ul>
+
+
+
+    
+  <ul>
+    {post.map(post => (
+      <li>
+        <h2>{post.title}</h2>
+        <div >
+          {post.content}
+        </div> 
+      </li>
+    ))}
+  </ul>
 
 </BaseLayout>    
       

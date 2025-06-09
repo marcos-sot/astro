@@ -1,10 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Greeting from '../components/Greeting';
+import Contador from '../components/Contador.vue'
+import PostDiferido from '../components/PostDiferido.astro';
+import MensajeDiferido from '../components/MensajeDiferido.astro'
 const pageTitle = "Página de inicio";
+
+export const prerender = false
 ---
 <BaseLayout pageTitle={pageTitle}>
   <h2>Mi impresionante subtítulo del blog</h2>
   
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+  <!-- <Greeting messages={["Hej", "Hallo", "Hola", "Habari"]}/> -->
+  <!-- <Contador/> -->
+
+
+
+
+<PostDiferido server:defer>
+  <MensajeDiferido slot="fallback" />
+</PostDiferido>
+
+
 </BaseLayout>
+
+
+
+
+<!-- <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} /> -->
